@@ -1,0 +1,7 @@
+#include "Resource.h"
+
+IDI_STOPWATCHICON           ICON                    "resources/icon.ico"
+
+IDI_SMALLICON               ICON                    "resources/small.ico"
+
+SOUND_DEATH                 WAVDATA                 "Resources/death.wav"
