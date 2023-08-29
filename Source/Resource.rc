@@ -2,6 +2,8 @@
 
 IDI_STOPWATCHICON           ICON                    "resources/icon.ico"
 
-IDI_SMALLICON               ICON                    "resources/small.ico"
+IDI_SMALLICON               ICON                    "resources/icon.ico"
 
-SOUND_DEATH                 WAVDATA                 "Resources/death.wav"
+SOUND_COUNTER               WAVDATA                 "Resources/ruins.wav"
+
+BITMAP_FOOD                 BITMAPDATA              "resources/food.bmp"

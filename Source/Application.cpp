@@ -2,8 +2,8 @@
 #include "Application.h"
 #include "Resource.h"
 
-const WCHAR* gTitle = L"Death Counter";
-const WCHAR* gWindowClass = L"DeathCounterWindowClass";
+const WCHAR* gTitle = L"Cooking Counter";
+const WCHAR* gWindowClass = L"CounterWindowClass";
 
 static ATOM RegisterWindowClass(HINSTANCE hInstance)
 {
@@ -41,16 +41,18 @@ BOOL Application::Init(HINSTANCE hInstance)
 		return FALSE;
 
 	//Sound Init
-	m_SoundManager.Init(8); // channels
-	deathsound.Load(SOUND_DEATH);
+	m_SoundManager.Init(1); // channels
+	deathsound.Load(SOUND_COUNTER);
 
 	// Graphics Resource Init
 	m_Renderer.Init(hWindow);
 	ID2D1Factory2* factory = m_Renderer.GetFactory();
 	ID2D1DeviceContext* dc = m_Renderer.GetDeviceContext();
 	HR(dc->CreateSolidColorBrush(D2D1::ColorF(0.0f, 0.0f, 0.0f, 1.0f), BlackBrush.ReleaseAndGetAddressOf()));
-	HR(dc->CreateSolidColorBrush(D2D1::ColorF(0.9f, 0.1f, 0.1f, 1.0f), RedBrush.ReleaseAndGetAddressOf()));
-	box.Init(factory, dc, 140.0f);
+	HR(dc->CreateSolidColorBrush(D2D1::ColorF(0.1f, 0.1f, 0.1f, 1.0f), RedBrush.ReleaseAndGetAddressOf()));
+
+	image = CreateTombstoneImage(factory, dc, 140.0f);
+	image = LoadBitmapImage(dc, BITMAP_FOOD);
 
 	// Text Init
 	HR(DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), reinterpret_cast<IUnknown**>(DWriteFactory.ReleaseAndGetAddressOf())));
@@ -88,14 +90,19 @@ void Application::Update()
 		dc->Clear();
 
 		D2D1::Matrix3x2F transform = D2D1::Matrix3x2F::Translation(m_WindowWidth / 2.0f, m_WindowWidth / 2.0f);
-		box.Draw(dc, transform);
+		//box.Draw(dc, transform);
 
-		D2D1_RECT_F rect = { 0, box.GetSize() * 0.5f, box.GetSize(), box.GetSize() };
+		D2D1::Matrix3x2F bitmapcenter = D2D1::Matrix3x2F::Translation(-image.m_Size.width / 2.0f, -image.m_Size.height / 2.0f);
+		D2D1_RECT_F rect = D2D1::RectF(0.0f, 0.0f, image.m_Size.width, image.m_Size.height);
+		dc->SetTransform(bitmapcenter * transform);
+		dc->DrawBitmap(image.m_Bitmap.Get(), rect);
+
+		D2D1_RECT_F textrect = { 0, image.m_Size.width * 0.34f, image.m_Size.width, image.m_Size.width };
 
 		M_DeathCount;
 		WCHAR buffer[5];
 		swprintf_s(buffer, 5, L"%i", M_DeathCount);
-		dc->DrawTextW(buffer, lstrlenW(buffer), TextFormat.Get(), rect, RedBrush.Get());
+		dc->DrawTextW(buffer, lstrlenW(buffer), TextFormat.Get(), textrect, RedBrush.Get());
 
 		HR(dc->EndDraw());
 		HR(m_Renderer.GetSwapChain()->Present(1, 0));

@@ -1,7 +1,7 @@
 #include "PCH.h"
 #include "Renderer.h"
 #include "Sound.h"
-#include "Shape.h"
+#include "Image.h"
 
 class Application
 {
@@ -31,7 +31,7 @@ private:
 	WavFile deathsound;
 	ComPtr<ID2D1SolidColorBrush> BlackBrush;
 	ComPtr<ID2D1SolidColorBrush> RedBrush;
-	Shape box;
+	Image image;
 	int M_DeathCount = 0;
 	int m_Editfield[4] = {};
 	inline BOOL Insert(int value)

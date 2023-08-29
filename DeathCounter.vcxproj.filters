@@ -36,7 +36,7 @@
     <ClCompile Include="Source\PCH.cpp">
       <Filter>PCH</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Shape.cpp">
+    <ClCompile Include="Source\Image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,7 +59,10 @@
     <ClInclude Include="Source\Resource.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Shape.h">
+    <ClInclude Include="Source\Image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

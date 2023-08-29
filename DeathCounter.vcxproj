@@ -136,6 +136,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp" />
+    <ClCompile Include="Source\Image.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\PCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -143,16 +144,16 @@
     </ClCompile>
     <ClCompile Include="Source\Renderer.cpp" />
     <ClCompile Include="Source\ResourceLoader.cpp" />
-    <ClCompile Include="Source\Shape.cpp" />
     <ClCompile Include="Source\Sound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application.h" />
+    <ClInclude Include="Source\Image.h" />
+    <ClInclude Include="Source\Math.h" />
     <ClInclude Include="Source\PCH.h" />
     <ClInclude Include="Source\Renderer.h" />
     <ClInclude Include="Source\Resource.h" />
     <ClInclude Include="Source\ResourceLoader.h" />
-    <ClInclude Include="Source\Shape.h" />
     <ClInclude Include="Source\Sound.h" />
   </ItemGroup>
   <ItemGroup>
