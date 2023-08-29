@@ -90,7 +90,6 @@ void Application::Update()
 		dc->Clear();
 
 		D2D1::Matrix3x2F transform = D2D1::Matrix3x2F::Translation(m_WindowWidth / 2.0f, m_WindowWidth / 2.0f);
-		//box.Draw(dc, transform);
 
 		D2D1::Matrix3x2F bitmapcenter = D2D1::Matrix3x2F::Translation(-image.m_Size.width / 2.0f, -image.m_Size.height / 2.0f);
 		D2D1_RECT_F rect = D2D1::RectF(0.0f, 0.0f, image.m_Size.width, image.m_Size.height);
@@ -166,7 +165,7 @@ void Application::GetValueFromDigitArray()
 void Application::SaveFile()
 {
 	std::ofstream file;
-	file.open("DeathCounter.txt");
+	file.open("Counter.txt");
 	if (!file.is_open())
 		return;
 	file << M_DeathCount;
@@ -176,7 +175,7 @@ void Application::SaveFile()
 void Application::Loadfile()
 {
 	std::ifstream file;
-	file.open("DeathCounter.txt");
+	file.open("Counter.txt");
 	if (!file.is_open())
 		return;
 	file >> M_DeathCount;
